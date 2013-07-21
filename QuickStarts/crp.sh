@@ -19,7 +19,7 @@ else
 	cd $PROJECTHOME
 	git init >> $HOME/create_project_$PROJECTNAME.log
 	git add README.md >> $HOME/create_project_$PROJECTNAME.log
-	git commit -m "$PROJECTNAME first commit" >> $HOME/create_project_$PROJECTNAME.log
+	git commit -m "$PROJECTNAME - Project creation autocommit" >> $HOME/create_project_$PROJECTNAME.log
 	# Create repository on GitHub
 	# Expect Github OAuth token to be located in $HOME/Access/.git_oauth_token
 	# Expect Github username to be located in $HOME/Access/.git_username
@@ -37,8 +37,15 @@ else
       	# Set remote URL to include password so remote push always is automatic.
       	git remote set-url origin https://$git_username:$git_password@github.com/$git_username/$PROJECTNAME.git >> $HOME/create_project_$PROJECTNAME.log
       	git push -u origin master >> $HOME/create_project_$PROJECTNAME.log
+      	# Create an automatic post-commit hook, to push changes to Github
+      	touch $PROJECTHOME/.git/hooks/post-commit
+      	echo "#!/bin/bash" >> $PROJECTHOME/.git/hooks/post-commit
+      	echo "git push origin master" >> $PROJECTHOME/.git/hooks/post-commit
+      	chmod a+x $PROJECTHOME/.git/hooks/post-commit
+      	# If git-cola is available, add a line to .qs_commands to start up git-cola during quickstart
+      	echo "setsid git gui" >> $PROJECTHOME/.qs_commands
     else
-    	echo "Unable to find Git OAuth token. No Github repo created"
+    	echo "Unable to find Git OAuth token. No Github repo created"  >> $HOME/create_project_$PROJECTNAME.log
     fi
 
     echo "Project: $PROJECTNAME created."

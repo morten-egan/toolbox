@@ -13,12 +13,13 @@ if [ -d "$PROJECTHOME" ]; then
 		cd $PROJECTHOME/bin
 		gnome-terminal --working-directory=$PROJECTHOME/bin
 	fi
-	# Start up sublime text in a seperate instance
-	subl -n
+	cd $PROJECTHOME
 	# Open the last 5 modified files in subl
+	flist="$PROJECTHOME/README.md"
 	for i in $(find . -type f -iregex '.*\.\(py\|sh\|sql\|erl\)' -printf '%T@ %p\n' | sort -n | tail -5 | cut -f2- -d" "); do
-		subl $i
+		flist="$flist $i"
 	done
+	subl -n $flist
 	# Check if there is a project quickstart command file and execute
 	if [ -f "$PROJECTHOME/.qs_commands" ]; then
 		while read p; do
