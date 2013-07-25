@@ -19,6 +19,10 @@ else
 	cd $PROJECTHOME
 	git init >> $HOME/create_project_$PROJECTNAME.log
 	git add README.md >> $HOME/create_project_$PROJECTNAME.log
+	# Add an ignore file to the repository
+	touch $PROJECTHOME/.gitignore
+	echo "# Ignore list" >> $PROJECTHOME/.gitignore
+	echo "*.py[cod]" >> $PROJECTHOME/.gitignore
 	git commit -m "$PROJECTNAME - Project creation autocommit" >> $HOME/create_project_$PROJECTNAME.log
 	# Create repository on GitHub
 	# Expect Github OAuth token to be located in $HOME/Access/.git_oauth_token

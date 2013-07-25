@@ -1,6 +1,7 @@
 #!/bin/bash
 export PROJECTNAME=$1
 export PROJECTHOME=$HOME/Kode/Projects/$1
+PATH=$PROJECTHOME/bin:$PROJECTHOME/lib:$PATH
 
 if [ -d "$PROJECTHOME" ]; then
 	# Control will enter here if $PROJECTHOME exists.
