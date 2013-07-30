@@ -7,6 +7,12 @@ if [ -d "$PROJECTHOME" ]; then
 	# Control will enter here if $PROJECTHOME exists.
 	# Go to projecthome and find all script files
 	cd $PROJECTHOME
+	# Check and set environment before starting terminals and programs
+	if [ -f "$PROJECTHOME/.qs_env" ]; then
+		while read p; do
+			export $p
+		done < $PROJECTHOME/.qs_env
+	fi
 	# Start a gnome-terminal in the projecthome
 	gnome-terminal
 	# If project home contains a bin directory open a gnome-terminal there as well

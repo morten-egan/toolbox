@@ -10,6 +10,8 @@ else
 	mkdir $PROJECTHOME
 	# Create project command file
 	touch $PROJECTHOME/.qs_commands
+	# Create project env file
+	touch $PROJECTHOME/.qs_env
 	# Create bin directory for executables
 	mkdir $PROJECTHOME/bin
 	# Create project readme file
@@ -23,6 +25,7 @@ else
 	touch $PROJECTHOME/.gitignore
 	echo "# Ignore list" >> $PROJECTHOME/.gitignore
 	echo "*.py[cod]" >> $PROJECTHOME/.gitignore
+	echo ".qs_env" >> $PROJECTHOME/.gitignore
 	git commit -m "$PROJECTNAME - Project creation autocommit" >> $HOME/create_project_$PROJECTNAME.log
 	# Create repository on GitHub
 	# Expect Github OAuth token to be located in $HOME/Access/.git_oauth_token
