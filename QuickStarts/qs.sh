@@ -23,7 +23,7 @@ if [ -d "$PROJECTHOME" ]; then
 	cd $PROJECTHOME
 	# Open the last 5 modified files in subl
 	flist="$PROJECTHOME/README.md"
-	for i in $(find . -type f -iregex '.*\.\(py\|sh\|sql\|erl\)' -printf '%T@ %p\n' | sort -n | tail -5 | cut -f2- -d" "); do
+	for i in $(find . -type f -iregex '.*\.\(py\|sh\|sql\|erl\|tpl\|html\)' -printf '%T@ %p\n' | sort -n | tail -5 | cut -f2- -d" "); do
 		flist="$flist $i"
 	done
 	subl -n $flist
