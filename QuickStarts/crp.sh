@@ -27,7 +27,10 @@ else
 	echo "}" >> $PROJECTHOME/$PROJECTNAME.sublime-project
 	# Create project readme file
 	touch $PROJECTHOME/README.md
-	echo "Project $PROJECTNAME readme file" >> $PROJECTHOME/README.md
+	echo "#Project $PROJECTNAME readme file" >> $PROJECTHOME/README.md
+	echo "========================" >> $PROJECTHOME/README.md
+	echo "This project has just been started by @morten-egan. He has not yet" >> $PROJECTHOME/README.md
+	echo "updated the readme file for this project. Dont worry, he will do so soon." >> $PROJECTHOME/README.md
 	# Create GIT repository for project
 	cd $PROJECTHOME
 	git init >> $HOME/create_project_$PROJECTNAME.log
@@ -37,6 +40,7 @@ else
 	echo "# Ignore list" >> $PROJECTHOME/.gitignore
 	echo "*.py[cod]" >> $PROJECTHOME/.gitignore
 	echo ".qs_env" >> $PROJECTHOME/.gitignore
+	echo "*.sublime-project" >> $PROJECTHOME/.gitignore
 	git commit -m "$PROJECTNAME - Project creation autocommit" >> $HOME/create_project_$PROJECTNAME.log
 	# Create repository on GitHub
 	# Expect Github OAuth token to be located in $HOME/Access/.git_oauth_token
