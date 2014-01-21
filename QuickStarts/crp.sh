@@ -14,6 +14,17 @@ else
 	touch $PROJECTHOME/.qs_env
 	# Create bin directory for executables
 	mkdir $PROJECTHOME/bin
+	# Create a sublime project file
+	touch $PROJECTHOME/$PROJECTNAME.sublime-project
+	echo "{" >> $PROJECTHOME/$PROJECTNAME.sublime-project
+	echo "	\"folders\":" >> $PROJECTHOME/$PROJECTNAME.sublime-project
+	echo "	[" >> $PROJECTHOME/$PROJECTNAME.sublime-project
+	echo "		{" >> $PROJECTHOME/$PROJECTNAME.sublime-project
+	echo "			\"follow_symlinks\": true," >> $PROJECTHOME/$PROJECTNAME.sublime-project
+	echo "			\"path\": \"$PROJECTHOME\"" >> $PROJECTHOME/$PROJECTNAME.sublime-project
+	echo "		}" >> $PROJECTHOME/$PROJECTNAME.sublime-project
+	echo "	]" >> $PROJECTHOME/$PROJECTNAME.sublime-project
+	echo "}" >> $PROJECTHOME/$PROJECTNAME.sublime-project
 	# Create project readme file
 	touch $PROJECTHOME/README.md
 	echo "Project $PROJECTNAME readme file" >> $PROJECTHOME/README.md

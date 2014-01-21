@@ -23,10 +23,18 @@ if [ -d "$PROJECTHOME" ]; then
 	cd $PROJECTHOME
 	# Open the last 5 modified files in subl
 	flist="$PROJECTHOME/README.md"
-	for i in $(find . -type f -iregex '.*\.\(py\|sh\|sql\|erl\|tpl\|html\)' -printf '%T@ %p\n' | sort -n | tail -5 | cut -f2- -d" "); do
+	for i in $(find . -type f -iregex '.*\.\(py\|sh\|pks\|pkb\|sql\|erl\|tpl\|html\|js\)' -printf '%T@ %p\n' | sort -n | tail -5 | cut -f2- -d" "); do
 		flist="$flist $i"
 	done
-	subl -n $flist
+	# Check if a sublime project file exists. If it does open that, else open last modified filelist
+	PROJECT=`ls *.sublime-project 2>/dev/null`
+	if [ -e "$PROJECT" ]; then
+		# Sublime project exists - open that
+		subl . --project "$PROJECT"
+	else
+		# No project file, open modified filelist
+		subl -n $flist
+	fi
 	# Check if there is a project quickstart command file and execute
 	if [ -f "$PROJECTHOME/.qs_commands" ]; then
 		while read p; do
