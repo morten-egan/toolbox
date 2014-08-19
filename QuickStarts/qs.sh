@@ -37,9 +37,7 @@ if [ -d "$PROJECTHOME" ]; then
 	fi
 	# Check if there is a project quickstart command file and execute
 	if [ -f "$PROJECTHOME/.qs_commands" ]; then
-		while read p; do
-			gnome-terminal -e "$p"
-		done < $PROJECTHOME/.qs_commands
+		gnome-terminal -e "setsid bash .qs_commands"
 	fi
 else
 	echo "Unknown project: $1"

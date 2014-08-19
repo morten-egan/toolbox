@@ -12,7 +12,7 @@ else
 	touch $PROJECTHOME/.qs_commands
 	# Create project env file
 	touch $PROJECTHOME/.qs_env
-	# Create bin directory for executables
+	# Create bin directory for executables and scripts
 	mkdir $PROJECTHOME/bin
 	# Create a sublime project file
 	touch $PROJECTHOME/$PROJECTNAME.sublime-project
@@ -28,8 +28,7 @@ else
 	# Create project readme file
 	touch $PROJECTHOME/README.md
 	echo "#Project $PROJECTNAME readme file" >> $PROJECTHOME/README.md
-	echo "========================" >> $PROJECTHOME/README.md
-	echo "This project has just been started by @morten-egan. He has not yet" >> $PROJECTHOME/README.md
+	echo "This project has just been started by [Morten Egan](https://github.com/morten-egan). He has not yet" >> $PROJECTHOME/README.md
 	echo "updated the readme file for this project. Dont worry, he will do so soon." >> $PROJECTHOME/README.md
 	# Create GIT repository for project
 	cd $PROJECTHOME
