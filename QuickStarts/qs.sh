@@ -20,21 +20,19 @@ if [ -d "$PROJECTHOME" ]; then
 		cd $PROJECTHOME/bin
 		gnome-terminal --working-directory=$PROJECTHOME/bin
 	fi
+	# If project home contains a temp directory open a gnome-terminal there as well
+	if [ -d "$PROJECTHOME/temp" ]; then
+		cd $PROJECTHOME/temp
+		gnome-terminal --working-directory=$PROJECTHOME/temp
+	fi
 	cd $PROJECTHOME
 	# Open the last 5 modified files in subl
-	flist="$PROJECTHOME/README.md"
+	flist="$PROJECTHOME/README.asciidoc"
 	for i in $(find . -type f -iregex '.*\.\(py\|sh\|pks\|pkb\|sql\|erl\|tpl\|html\|js\)' -printf '%T@ %p\n' | sort -n | tail -5 | cut -f2- -d" "); do
 		flist="$flist $i"
 	done
-	# Check if a sublime project file exists. If it does open that, else open last modified filelist
-	PROJECT=`ls *.sublime-project 2>/dev/null`
-	if [ -e "$PROJECT" ]; then
-		# Sublime project exists - open that
-		subl . --project "$PROJECT"
-	else
-		# No project file, open modified filelist
-		subl -n $flist
-	fi
+	# Open the latest 5 modified files in ATOM.
+	atom -n $flist
 	# Check if there is a project quickstart command file and execute
 	if [ -f "$PROJECTHOME/.qs_commands" ]; then
 		gnome-terminal -e "setsid bash .qs_commands"

@@ -12,30 +12,33 @@ else
 	touch $PROJECTHOME/.qs_commands
 	# Create project env file
 	touch $PROJECTHOME/.qs_env
-	# Create bin directory for executables and scripts
-	#mkdir $PROJECTHOME/bin
 	# Create temp directory (will be excluded from git)
 	mkdir $PROJECTHOME/temp
-	# Create a sublime project file
-	touch $PROJECTHOME/$PROJECTNAME.sublime-project
-	echo "{" >> $PROJECTHOME/$PROJECTNAME.sublime-project
-	echo "	\"folders\":" >> $PROJECTHOME/$PROJECTNAME.sublime-project
-	echo "	[" >> $PROJECTHOME/$PROJECTNAME.sublime-project
-	echo "		{" >> $PROJECTHOME/$PROJECTNAME.sublime-project
-	echo "			\"follow_symlinks\": true," >> $PROJECTHOME/$PROJECTNAME.sublime-project
-	echo "			\"path\": \"$PROJECTHOME\"" >> $PROJECTHOME/$PROJECTNAME.sublime-project
-	echo "		}" >> $PROJECTHOME/$PROJECTNAME.sublime-project
-	echo "	]" >> $PROJECTHOME/$PROJECTNAME.sublime-project
-	echo "}" >> $PROJECTHOME/$PROJECTNAME.sublime-project
 	# Create project readme file
-	touch $PROJECTHOME/README.md
-	echo "#Project $PROJECTNAME readme file" >> $PROJECTHOME/README.md
-	echo "This project has just been started by [Morten Egan](https://github.com/morten-egan). He has not yet" >> $PROJECTHOME/README.md
-	echo "updated the readme file for this project. Dont worry, he will do so soon." >> $PROJECTHOME/README.md
+	touch $PROJECTHOME/README.asciidoc
+	echo "= $PROJECTNAME" >> $PROJECTHOME/README.asciidoc
+	echo "Morten Egan <morten@plsql.ninja>" >> $PROJECTHOME/README.asciidoc
+	echo " " >> $PROJECTHOME/README.asciidoc
+	echo "This is the initial readme of the project. More will be added later. Like a description of what this is" >> $PROJECTHOME/README.asciidoc
+	echo " " >> $PROJECTHOME/README.asciidoc
+	echo "[NOTE]" >> $PROJECTHOME/README.asciidoc
+	echo "Since this is the first check-in, not much info has been added yet." >> $PROJECTHOME/README.asciidoc
+	echo "But he will do soon." >> $PROJECTHOME/README.asciidoc
+	echo " " >> $PROJECTHOME/README.asciidoc
+	echo "== Summary" >> $PROJECTHOME/README.asciidoc
+	echo " " >> $PROJECTHOME/README.asciidoc
+	echo "== Pre-requisites" >> $PROJECTHOME/README.asciidoc
+	echo " " >> $PROJECTHOME/README.asciidoc
+	echo "== Installation" >> $PROJECTHOME/README.asciidoc
+	echo " " >> $PROJECTHOME/README.asciidoc
+	echo "== Procedures and Functions" >> $PROJECTHOME/README.asciidoc
+	echo " " >> $PROJECTHOME/README.asciidoc
+	echo "== Examples" >> $PROJECTHOME/README.asciidoc
+	echo " " >> $PROJECTHOME/README.asciidoc
 	# Create GIT repository for project
 	cd $PROJECTHOME
 	git init >> $HOME/create_project_$PROJECTNAME.log
-	git add README.md >> $HOME/create_project_$PROJECTNAME.log
+	git add README.asciidoc >> $HOME/create_project_$PROJECTNAME.log
 	# Add an ignore file to the repository
 	touch $PROJECTHOME/.gitignore
 	echo "# Ignore list" >> $PROJECTHOME/.gitignore
