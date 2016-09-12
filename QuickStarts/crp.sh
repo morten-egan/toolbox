@@ -15,26 +15,26 @@ else
 	# Create temp directory (will be excluded from git)
 	mkdir $PROJECTHOME/temp
 	# Create project readme file
-	touch $PROJECTHOME/README.asciidoc
-	echo "= $PROJECTNAME" >> $PROJECTHOME/README.asciidoc
-	echo "Morten Egan <morten@plsql.ninja>" >> $PROJECTHOME/README.asciidoc
-	echo " " >> $PROJECTHOME/README.asciidoc
-	echo "This is the initial readme of the project. More will be added later. Like a description of what this is" >> $PROJECTHOME/README.asciidoc
-	echo " " >> $PROJECTHOME/README.asciidoc
-	echo "[NOTE]" >> $PROJECTHOME/README.asciidoc
-	echo "Since this is the first check-in, not much info has been added yet." >> $PROJECTHOME/README.asciidoc
-	echo "But he will do soon." >> $PROJECTHOME/README.asciidoc
-	echo " " >> $PROJECTHOME/README.asciidoc
-	echo "== Summary" >> $PROJECTHOME/README.asciidoc
-	echo " " >> $PROJECTHOME/README.asciidoc
-	echo "== Pre-requisites" >> $PROJECTHOME/README.asciidoc
-	echo " " >> $PROJECTHOME/README.asciidoc
-	echo "== Installation" >> $PROJECTHOME/README.asciidoc
-	echo " " >> $PROJECTHOME/README.asciidoc
-	echo "== Procedures and Functions" >> $PROJECTHOME/README.asciidoc
-	echo " " >> $PROJECTHOME/README.asciidoc
-	echo "== Examples" >> $PROJECTHOME/README.asciidoc
-	echo " " >> $PROJECTHOME/README.asciidoc
+	touch $PROJECTHOME/readme.md
+	echo "# $PROJECTNAME" >> $PROJECTHOME/readme.md
+	echo "Morten Egan <morten@plsql.ninja>" >> $PROJECTHOME/readme.md
+	echo " " >> $PROJECTHOME/readme.md
+	echo "This is the initial readme of the project. More will be added later. Like a description of what this is" >> $PROJECTHOME/readme.md
+	echo " " >> $PROJECTHOME/readme.md
+	echo "[NOTE]" >> $PROJECTHOME/readme.md
+	echo "Since this is the first check-in, not much info has been added yet." >> $PROJECTHOME/readme.md
+	echo "But he will do soon." >> $PROJECTHOME/readme.md
+	echo " " >> $PROJECTHOME/readme.md
+	echo "## Summary" >> $PROJECTHOME/readme.md
+	echo " " >> $PROJECTHOME/readme.md
+	echo "## Pre-requisites" >> $PROJECTHOME/readme.md
+	echo " " >> $PROJECTHOME/readme.md
+	echo "## Installation" >> $PROJECTHOME/readme.md
+	echo " " >> $PROJECTHOME/readme.md
+	echo "## Procedures and Functions" >> $PROJECTHOME/readme.md
+	echo " " >> $PROJECTHOME/readme.md
+	echo "## Examples" >> $PROJECTHOME/readme.md
+	echo " " >> $PROJECTHOME/readme.md
 	# Create GIT repository for project
 	cd $PROJECTHOME
 	git init >> $HOME/create_project_$PROJECTNAME.log
@@ -58,7 +58,7 @@ else
 		git_password=$(<$HOME/Access/.git_password)
 		# Create new repository
 		curl -i -H "Authorization: token $git_token" \
-     	-d "{ \"name\": \"$PROJECTNAME\" }" \
+     	-d "{ \"name\": \"$PROJECTNAME\", \"description\": \"$PROJECTNAME\" }" \
       	https://api.github.com/user/repos >> $HOME/create_project_$PROJECTNAME.log
       	# Add remote repository
       	git remote add origin https://github.com/$git_username/$PROJECTNAME.git >> $HOME/create_project_$PROJECTNAME.log
